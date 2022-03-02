@@ -10,9 +10,10 @@ const controllers = require("./controllers");
 app.use("/user", controllers.userController)
 app.use(require("./middleware/validateSession"))
 app.use("/place", controllers.placeController)
+app.use("/trail", controllers.trailController)
 
 dbConnection.authenticate()
-    .then(() => dbConnection.sync({force:true}))
+    .then(() => dbConnection.sync())
     .then(() => {
         app.listen(process.env.PORT, () => {
             console.log(`[Server]: App is listening on ${process.env.PORT}.`)

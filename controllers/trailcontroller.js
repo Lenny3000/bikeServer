@@ -1,11 +1,11 @@
 const Express = require('express');
 const router = Express.Router();
-const { PlaceModel } = require("../models")
+const { TrailModel } = require("../models")
 
 router.get("/get", async (req, res) => {
     try{
-        const allPlace = await PlaceModel.findAll()
-        res.status(200).json(allPlace)
+        const allTrail = await TrailModel.findAll()
+        res.status(200).json(allTrail)
     } catch(err) {
         res.status(500).json({
             error:err
@@ -16,21 +16,21 @@ router.get("/get", async (req, res) => {
 router.post("/create", async (req, res) => {
 
     try {
-        const createPlace = await PlaceModel.create({
-            placeName: req.body.placeName,
-            address: req.body.address,
-            latitude: req.body.latitude,
-            longitude: req.body.longitude,
+        const createTrail = await TrailModel.create({
+            trailName: req.body.trailName,
+            length: req.body.length,
+            description: req.body.description,
+            imageURL: req.body.imageURL,
             ownerID: req.user.id
         })
 
         res.status(201).json({
-            message: "Place successfully created",
-            createPlace
+            message: "Trail successfully created",
+            createTrail
         })
     } catch(err) {
         res.status(500).json({
-            message: `Failed to create place ${err}`
+            message: `Failed to create trail ${err}`
         })
     }
 })
@@ -38,7 +38,7 @@ router.post("/create", async (req, res) => {
 router.get("/ownerID",/*validateJWT,*/ async (req, res) => {
     const { id } = req.user
     try {
-        const myLogs = await PlaceModel.findAll({
+        const myLogs = await TrailModel.findAll({
             where: {
                 ownerID: id
             }
@@ -51,26 +51,26 @@ router.get("/ownerID",/*validateJWT,*/ async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     const {
-        placeName,
-        address,
-        latitude,
-        longitude,
+        trailName,
+        length,
+        description,
+        imageURL,
     } = req.body
 
     try {
-        await PlaceModel.update(
-            { placeName, address, latitude, longitude }, 
+        await TrailModel.update(
+            { trailName, length, description, imageURL }, 
             { where: { id: req.params.id }, returning: true }
         )
         .then((result) => {
             res.status(200).json({
-                message: "Place successfully updated.",
-                updatedPlace: result
+                message: "Trail successfully updated.",
+                updatedTrail: result
             })
         })
     } catch(err) {
         res.status(500).json({
-            message: `Failed to update place ${err}`
+            message: `Failed to update trail ${err}`
         })
     }
 })
@@ -78,17 +78,17 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
 
     try {
-        await PlaceModel.destroy({
+        await TrailModel.destroy({
             where: { id: req.params.id }
         })
         
         res.status(200).json({
-            message: "Place deleted",
+            message: "Trail deleted",
         })
         
     } catch(err) {
         res.status(500).json({
-            message: `Failed to delete place ${err}`
+            message: `Failed to delete trail ${err}`
         })
     }
 })
