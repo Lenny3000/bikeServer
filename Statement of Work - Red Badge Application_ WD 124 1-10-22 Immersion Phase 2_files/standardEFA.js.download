@@ -1,0 +1,15 @@
+// HubSPot Student Survey 
+// Auto populates the Date, Canvas ID, and Email
+let currentHubDate = new Date();
+let hubMonth = ("0" + (currentHubDate.getMonth() + 1)).slice(-2);
+let hubDate = ("0" + currentHubDate.getDate()).slice(-2);
+let hubYear = currentHubDate.getFullYear();
+const hubFormDate = hubYear + "-" + hubMonth + "-" + hubDate
+$.get('/api/v1/users/self/profile', function (profile) {
+    let hubSpotIframe = document.getElementById('hubSpotStudentSurveyForm');
+    if (hubSpotIframe == null) {
+        console.log("Not a survey page")
+    } else if (hubSpotIframe.src == "https://share.hsforms.com/1R1iGRJTrQsyLUOs-HgVWDA5aiqt") {
+        hubSpotIframe.src = hubSpotIframe.src + "?email=" + profile.login_id + "&learning_survey_completion_date__c=" + hubFormDate + "&canvas_id__c=" + profile.id;
+    } 
+});

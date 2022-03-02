@@ -1,0 +1,125 @@
+/* Course page title */
+
+.page-title {
+	font-weight: 500 !important;
+	text-transform: uppercase;
+}
+
+/* Keep page content to 80 characters wide */
+
+.user_content p,
+.user_content li {
+	max-width: 80ch;
+}
+
+/* Font size to 14pt for page content  */
+
+.user_content p,
+.user_content li,
+.user_content a {
+	font-size: 14pt;
+}
+
+.user_content code,
+.user_content pre {
+	width: fit-content;
+	font-size: 13pt;
+	white-space: break-spaces;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.user_content pre {
+	min-width: 80ch;
+}
+
+pre.terminal,
+code.terminal {
+	background-color: #333333;
+	color: #ffffff;
+}
+
+/*Table styling */
+
+.tablerows tr:nth-child(even) {
+	background: #ccc;
+}
+
+.tablerows tr:nth-child(odd) {
+	background: #fff;
+}
+
+.copyable.copyable {
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+
+.ui-tabs-panel {
+	background-color: #fafafa;
+}
+/* All headings Bold */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+}
+
+/* All uppercase on Module Titles */
+
+.module-item-title,
+.header .name {
+	text-transform: uppercase;
+}
+
+/* Add "Quiz" and "Assignment" to titles of quizzes and assignments */
+
+span.type_icon[title="Quiz"] + div.ig-info span.item_name > a::before {
+	content: "QUIZ →";
+}
+
+span.type_icon[title="Assignment"] + div.ig-info span.item_name > a::before {
+	content: "ASSIGNMENT →";
+}
+
+/* Course Home Page buttons */
+
+.homebuttons img {
+	filter: grayscale();
+}
+
+.homebuttons img:hover {
+	z-index: 1;
+	transform: scale(1.02);
+	filter: none;
+	-webkit-box-shadow: 0px 10px 13px -7px #000000, inset 5px 5px 15px 5px rgba(255, 255, 255, 0);
+	box-shadow: 0px 10px 13px -7px #000000, inset 5px 5px 15px 5px rgba(255, 255, 255, 0);
+}
+
+.homebuttons2 a img{
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+	width: 100%;
+	margin-bottom: 1.2em;
+	background: transparent;
+	filter: grayscale();
+}
+
+.homebuttons2 a img:hover{
+	background: transparent;
+	transform: scale(1.02);
+	filter: none;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	-moz-box-shadow: 0 8px 6px -6px black;
+	box-shadow: 0 8px 6px -6px black;
+	border-bottom-left-radius: 8%;
+	border-bottom-right-radius: 8%;
+}
