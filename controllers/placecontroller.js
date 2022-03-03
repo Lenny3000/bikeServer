@@ -35,7 +35,7 @@ router.post("/create", async (req, res) => {
     }
 })
 
-router.get("/ownerID",/*validateJWT,*/ async (req, res) => {
+router.get("/ownerID",/* validateJWT,*/ async (req, res) => {
     const { id } = req.user
     try {
         const myLogs = await PlaceModel.findAll({
