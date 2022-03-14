@@ -86,6 +86,21 @@ router.get("/userInfo/:id", validateJWT, async (req, res) => {
     }
 })
 
+router.get("/userInfo/", validateJWT, async (req, res) => {
+    // const allUsers = await UserModel.findAll();
+    try {
+        const user = await UserModel.findAll({
+           where: {
+            //    isAdmin: true
+           }
+        });
+
+        res.status(200).json(user)
+    } catch (err) {
+        res.status(500).json({ error: err })
+    }
+})
+
 router.put("/:id", validateJWT, async (req, res) => {
   const { password } = req.body;
   if (req.user.isAdmin == true) {
