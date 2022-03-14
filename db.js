@@ -5,12 +5,12 @@ const { Sequelize } = require("sequelize");
 //     ssl: process.env.ENVIRONMENT === 'production'
 // })
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const db = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     ssl: process.env.ENVIRONMENT === 'production'
 })
 
- const db = new Sequelize(process.env.DB_CONNECTION_STRING);
+//  const db = new Sequelize(process.env.DB_CONNECTION_STRING);
 
 // Database connection string
 // <db type>://<username>:<password>@ip:port/<db name>
